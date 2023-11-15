@@ -5,6 +5,7 @@ import PokemonGrid from './components/PokemonGrid'
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+  const url = 'https://pokeapi.co/api/v2/pokemon/'
 
 function handleSelectPokemon(pokemon){
   return () => {
@@ -17,9 +18,9 @@ function handleSelectPokemon(pokemon){
     <Suspense fallback={<div>Loading...</div>}>
       <div className="App">
         {selectedPokemon ? (
-          <PokemonCard selectedPokemon={selectedPokemon} clearHandler={()=> selectedPokemon(null)}/>
+          <PokemonCard parentUrl={url} selectedPokemon={selectedPokemon} clearHandler={()=> selectedPokemon(null)}/>
         ) : (
-          <PokemonGrid handleSelectPokemon={handleSelectPokemon}/>
+          <PokemonGrid url={url} handleSelectPokemon={handleSelectPokemon}/>
         )}
       </div>
     </Suspense>
